@@ -11,6 +11,7 @@ use std::fmt;
 /// A warning explains what's wrong with the password.
 #[derive(Debug, Copy, Clone, PartialEq)]
 #[cfg_attr(feature = "ser", derive(serde::Serialize))]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
 #[allow(missing_docs)]
 pub enum Warning {
     StraightRowsOfKeysAreEasyToGuess,
@@ -70,6 +71,7 @@ impl fmt::Display for Warning {
 /// A suggestion helps to choose a better password.
 #[derive(Debug, Copy, Clone, PartialEq)]
 #[cfg_attr(feature = "ser", derive(serde::Serialize))]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
 #[allow(missing_docs)]
 pub enum Suggestion {
     UseAFewWordsAvoidCommonPhrases,
@@ -134,6 +136,7 @@ impl fmt::Display for Suggestion {
 /// Verbal feedback to help choose better passwords
 #[derive(Debug, Clone, Default)]
 #[cfg_attr(feature = "ser", derive(serde::Serialize))]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
 pub struct Feedback {
     /// Explains what's wrong, e.g. "This is a top-10 common password". Not always set.
     warning: Option<Warning>,
